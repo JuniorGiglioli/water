@@ -1,0 +1,8 @@
+node_modules
+assets/css/material-dashboard.css.map
+app/**/*.js
+app/**/*.js.map
+npm-debug.log
+typings
+config.json
+changelog

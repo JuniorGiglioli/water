@@ -1,0 +1,24 @@
+Colocar em context.xml:
+
+<Resource name="jdbc/bdsgp" auth="Container"
+         type="javax.sql.DataSource" driverClassName="org.postgresql.Driver"
+         url="jdbc:postgresql://localhost:5432/bdsgp"
+         username="postgres" password="postgres" maxActive="20" maxIdle="10" maxWait="-1"/>
+
+
+Colocar em server.xml:
+
+<Connector
+    	SSLEnabled="true"
+    	acceptCount="100"
+    	clientAuth="false"
+		disableUploadTimeout="true"
+		enableLookups="false"
+		maxThreads="25"
+		port="8443"
+		keystoreFile="conf/key.keystore"
+		keystorePass="qwe123"
+		protocol="org.apache.coyote.http11.Http11NioProtocol"
+		scheme="https"
+		secure="true"
+		sslProtocol="TLS" />

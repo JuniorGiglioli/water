@@ -1,0 +1,3 @@
+src/main/webapp/WEB-INF/classes/*
+/target/
+src/main/resources/parameters.properties

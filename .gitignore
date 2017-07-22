@@ -1,0 +1,12 @@
+water-back/src/main/webapp/WEB-INF/classes/*
+water-back/target/
+water-back/src/main/resources/parameters.properties
+
+water-front/node_modules
+water-front/assets/css/material-dashboard.css.map
+water-front/app/**/*.js
+water-front/app/**/*.js.map
+water-front/npm-debug.log
+water-front/typings
+water-front/config.json
+water-front/changelog
