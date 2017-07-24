@@ -16,14 +16,20 @@ public class Person extends AbstractModel<Long> {
 	private BigDecimal credit = BigDecimal.ZERO;
 	private boolean active;
 	private Role role = Role.BASIC;
-	private Date dateRegister;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "last_acess", nullable = false)
 	private Date lastAcess;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "register_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false, insertable = false, updatable = false)
+	private Date registerDate;
 
 	public Person() {
 	}
 
 	public Person(String name, String mail, String password, BigDecimal credit, boolean active, Role role,
-			Date dateRegister, Date lastAcess) {
+			Date registerDate, Date lastAcess) {
 		super();
 		this.name = name;
 		this.mail = mail;
@@ -31,7 +37,7 @@ public class Person extends AbstractModel<Long> {
 		this.credit = credit;
 		this.active = active;
 		this.role = role;
-		this.dateRegister = dateRegister;
+		this.registerDate = registerDate;
 		this.lastAcess = lastAcess;
 	}
 
@@ -84,18 +90,14 @@ public class Person extends AbstractModel<Long> {
 		this.role = role;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_register", nullable = false)
-	public Date getDateRegister() {
-		return dateRegister;
+	public Date getRegisterDate() {
+		return registerDate;
 	}
 
-	public void setDateRegister(Date dateRegister) {
-		this.dateRegister = dateRegister;
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "last_acess", nullable = false)
 	public Date getLastAcess() {
 		return lastAcess;
 	}

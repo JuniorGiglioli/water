@@ -22,27 +22,33 @@ public abstract class AbstractController<T extends AbstractModel<Long>, Long ext
 
 	protected abstract AbstractService<T, Long> getService();
 
-	@Post
+	@Get("/{id}")
+	public void find(Long id) {
+		this.result.use(Results.json()).withoutRoot().from(getService().get(id)).serialize();
+	}
+
+	@Post("")
 	@Consumes("application/json")
 	public void save(T entity) {
 		this.result.use(Results.json()).withoutRoot().from(getService().save(entity)).serialize();
 	}
 
-	@Get
+	@Get("")
 	public void list() {
 		this.result.use(Results.json()).withoutRoot().from(getService().listar()).serialize();
 	}
 
-	@Put
+	@Put("")
 	@Consumes("application/json")
 	public void update(T entity) {
 		getService().update(entity);
 		this.result.use(Results.json()).withoutRoot().from(entity).serialize();
 	}
 
-	@Delete
-	public void delete(T entity) {
-		getService().delete(entity);
+	@Delete("/{id}")
+	public void delete(Long id) {
+		// TODO: corrigir
+		// getService().delete(id);
 		this.result.use(Results.status()).ok();
 	}
 
