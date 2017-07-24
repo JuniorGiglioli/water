@@ -5,10 +5,10 @@
     </div>
     <div class="main-panel">
         <navbar-cmp></navbar-cmp>
-        <dashboard-cmp></dashboard-cmp>
-        <div *ngIf="isMaps('/maps')">
-            <footer-cmp></footer-cmp>
+        <router-outlet></router-outlet>
+        <div *ngIf="!isMaps('')">
+            <home-cmp></home-cmp>
         </div>
+        <footer-cmp></footer-cmp>
     </div>
 </div>
-

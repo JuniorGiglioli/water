@@ -12,7 +12,6 @@ export class NavbarComponent implements OnInit{
     private listTitles: any[];
     location: Location;
     constructor(location:Location) {
-        console.log('aseasdsdasd');
         this.location = location;
     }
     ngOnInit(){
@@ -28,6 +27,6 @@ export class NavbarComponent implements OnInit{
                 return this.listTitles[item].title;
             }
         }
-        return 'Dashboard';
+        return '';
     }
 }

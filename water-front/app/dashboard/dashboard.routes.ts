@@ -24,7 +24,8 @@ export const MODULE_ROUTES: Routes = [
     },
     { path: 'oauth2/callback', component: OAuth2Callback },
     {
-        path: '', component: HomeComponent, canActivate: [OAuth2Guard],
+        //path: '', component: DashboardComponent, canActivate: [OAuth2Guard],
+        path: '', component: DashboardComponent, canActivate: [OAuth2Guard], 
         children: [
             { path: 'dashboard', component: HomeComponent },
             { path: 'user', component: UserComponent },

@@ -20,9 +20,11 @@ export class DashboardComponent implements OnInit {
         var titlee = this.location.prepareExternalUrl( this.location.path() );
         titlee = titlee.slice( 1 );
         if ( path == titlee ) {
+            console.log("Console false");
             return false;
         }
         else {
+            console.log("Console true");
             return true;
         }
     }
