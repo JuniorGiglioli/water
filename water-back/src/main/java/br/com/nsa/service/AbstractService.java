@@ -26,10 +26,9 @@ public abstract class AbstractService<T extends AbstractModel<Long>, Long extend
 		getGenericDAO().update(entity);
 	}
 
-	public void delete(T entity) {
+	public void delete(Long id) {
 		try {
-			T object = getGenericDAO().findById(entity.getId());
-			getGenericDAO().remove(object);
+			getGenericDAO().remove(id);
 		} catch (Exception e) {
 		}
 	}

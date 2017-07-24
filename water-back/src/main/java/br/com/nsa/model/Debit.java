@@ -12,21 +12,23 @@ import javax.persistence.TemporalType;
 public class Debit extends AbstractModel<Long> {
 
 	private BigDecimal value = BigDecimal.ZERO;
-	private Person targetUser;
+
 	private Person Registrant;
+
+	@Column(name = "target_user", nullable = false)
+	private Person targetUser;
+
 	private String description;
-	private Date dateRegister;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "create_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false, insertable = false, updatable = false)
+	private Date createDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "update_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false)
+	private Date updateDate;
 
 	public Debit() {
-	}
-
-	public Debit(BigDecimal value, String description, Person targetUser, Person registrant, Date dateRegister) {
-		super();
-		this.value = value;
-		this.description = description;
-		this.targetUser = targetUser;
-		Registrant = registrant;
-		this.dateRegister = dateRegister;
 	}
 
 	public BigDecimal getValue() {
@@ -45,7 +47,6 @@ public class Debit extends AbstractModel<Long> {
 		this.description = description;
 	}
 
-	@Column(name = "target_user", nullable = false)
 	public Person getUserTarget() {
 		return targetUser;
 	}
@@ -62,14 +63,28 @@ public class Debit extends AbstractModel<Long> {
 		Registrant = registrant;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_register", nullable = false)
-	public Date getDateRegister() {
-		return dateRegister;
+	public Person getTargetUser() {
+		return targetUser;
 	}
 
-	public void setDateRegister(Date dateRegister) {
-		this.dateRegister = dateRegister;
+	public void setTargetUser(Person targetUser) {
+		this.targetUser = targetUser;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 }

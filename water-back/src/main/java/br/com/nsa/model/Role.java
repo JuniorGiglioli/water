@@ -1,7 +1,7 @@
 package br.com.nsa.model;
 
 public enum Role {
-	ADMINISTRATOR("Administrator"), MANAGER("Manager"), BASIC("Basic");
+	ADMINISTRATOR("Administrator"), MANAGER("Manager"), STANDARD("Standard");
 
 	private String description;
 

@@ -1,11 +1,17 @@
 package br.com.nsa.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -13,19 +19,33 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "debit_shared")
 public class DebitShared extends AbstractModel<Long> {
-	
+
+	@Column(name = "amount_value", nullable = false)
 	private BigDecimal amountValue = BigDecimal.ZERO;
+
+	@Column(name = "divided_value", nullable = false)
 	private BigDecimal dividedValue = BigDecimal.ZERO;
+
 	private Person Registrant;
+
 	private String description;
-	private Date dateRegister;
-	// TODO: terminar de mapear
-	// private List<User> Paying;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "create_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false, insertable = false, updatable = false)
+	private Date createDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "update_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false)
+	private Date updateDate;
+
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinTable(name = "Payings", joinColumns = { @JoinColumn(name = "debit_shared_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "person_id") })
+	private List<Person> Payings = new ArrayList<>();
 
 	public DebitShared() {
 	}
 
-	@Column(name = "amount_value", nullable = false)
 	public BigDecimal getAmountValue() {
 		return amountValue;
 	}
@@ -34,7 +54,6 @@ public class DebitShared extends AbstractModel<Long> {
 		this.amountValue = amountValue;
 	}
 
-	@Column(name = "divided_value", nullable = false)
 	public BigDecimal getDividedValue() {
 		return dividedValue;
 	}
@@ -59,22 +78,28 @@ public class DebitShared extends AbstractModel<Long> {
 		this.description = description;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_register", nullable = false)
-	public Date getDateRegister() {
-		return dateRegister;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setDateRegister(Date dateRegister) {
-		this.dateRegister = dateRegister;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
-	// public List<User> getPaying() {
-	// return Paying;
-	// }
-	//
-	// public void setPaying(List<User> paying) {
-	// Paying = paying;
-	// }
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public List<Person> getPayings() {
+		return Payings;
+	}
+
+	public void setPayings(List<Person> payings) {
+		Payings = payings;
+	}
 
 }

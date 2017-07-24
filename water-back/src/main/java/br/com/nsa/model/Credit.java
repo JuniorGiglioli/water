@@ -15,7 +15,14 @@ public class Credit extends AbstractModel<Long> {
 	private Person benefited;
 	private Person Registrant;
 	private String description;
-	private Date dateRegister;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "create_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false, insertable = false, updatable = false)
+	private Date createDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "update_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false)
+	private Date updateDate;
 
 	public Credit() {
 	}
@@ -52,14 +59,20 @@ public class Credit extends AbstractModel<Long> {
 		Registrant = registrant;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_register", nullable = false)
-	public Date getDateRegister() {
-		return dateRegister;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setDateRegister(Date dateRegister) {
-		this.dateRegister = dateRegister;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 }

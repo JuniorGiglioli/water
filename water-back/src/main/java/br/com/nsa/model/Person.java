@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -15,30 +17,23 @@ public class Person extends AbstractModel<Long> {
 	private String password;
 	private BigDecimal credit = BigDecimal.ZERO;
 	private boolean active;
-	private Role role = Role.BASIC;
+
+	@Enumerated(EnumType.STRING)
+	private Role role = Role.STANDARD;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "last_acess", nullable = false)
 	private Date lastAcess;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "register_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false, insertable = false, updatable = false)
-	private Date registerDate;
+	@Column(name = "create_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false, insertable = false, updatable = false)
+	private Date createDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "update_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false)
+	private Date updateDate;
 
 	public Person() {
-	}
-
-	public Person(String name, String mail, String password, BigDecimal credit, boolean active, Role role,
-			Date registerDate, Date lastAcess) {
-		super();
-		this.name = name;
-		this.mail = mail;
-		this.password = password;
-		this.credit = credit;
-		this.active = active;
-		this.role = role;
-		this.registerDate = registerDate;
-		this.lastAcess = lastAcess;
 	}
 
 	public String getName() {
@@ -90,20 +85,28 @@ public class Person extends AbstractModel<Long> {
 		this.role = role;
 	}
 
-	public Date getRegisterDate() {
-		return registerDate;
-	}
-
-	public void setRegisterDate(Date registerDate) {
-		this.registerDate = registerDate;
-	}
-
 	public Date getLastAcess() {
 		return lastAcess;
 	}
 
 	public void setLastAcess(Date lastAcess) {
 		this.lastAcess = lastAcess;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 }
