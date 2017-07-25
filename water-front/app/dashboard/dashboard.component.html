@@ -1,14 +1,34 @@
 <div class="wrapper">
-    <div class="sidebar" data-color='red' data-image="">
-        <sidebar-cmp></sidebar-cmp>
-        <div class="sidebar-background" style="background-image: url(../assets/img/sidebar-4.jpg)"></div>
-    </div>
-    <div class="main-panel">
-        <navbar-cmp></navbar-cmp>
-        <router-outlet></router-outlet>
-        <div *ngIf="!isMaps('')">
-            <home-cmp></home-cmp>
-        </div>
-        <footer-cmp></footer-cmp>
-    </div>
+	<div class="sidebar" data-color='red' data-image="">
+		<sidebar-cmp></sidebar-cmp>
+		<div class="sidebar-background"
+			style="background-image: url(../assets/img/sidebar-4.jpg)"></div>
+	</div>
+	<navbar-cmp></navbar-cmp>
+	<div class="main-panel">
+	
+		<!-- Serviço de Mensagens global do sistema -->
+		<div *ngFor="let message of messages">
+		
+			<div data-notify="container" class="col-xs-11 col-sm-4 alert alert-{{ message.status }} alert-with-icon animated fadeInDown"
+				role="alert" data-notify-position="bottom-right" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out; z-index: 1031; bottom: 20px; right: 20px;">
+				<button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 50%; margin-top: -13px; z-index: 1033;">×</button>
+				<i data-notify="icon" class="material-icons">notifications</i>
+				<span data-notify="title"></span> <span data-notify="message"> 
+				<span *ngIf="message.status === 'danger'" class="fa fa-times-circle"><b> Erro!</b></span> 
+				<span *ngIf="message.status === 'success'" class="fa fa-check-circle"><b> Sucesso!</b></span> 
+				<span *ngIf="message.status === 'warning'" class="fa fa-exclamation-circle"><b> Atenção! </b></span> 
+				<span *ngIf="message.status === 'info'" class="fa fa-info-circle"><b> Informação! </b></span> 
+				 - {{message.message}}
+				</span><a href="#" target="_blank" data-notify="url"></a>
+			</div>
+			{{message.message}}
+		</div>
+		
+		<router-outlet></router-outlet>
+		<div *ngIf="!isMaps('')">
+			<home-cmp></home-cmp>
+		</div>
+		<footer-cmp></footer-cmp>
+	</div>
 </div>

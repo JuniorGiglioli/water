@@ -7,12 +7,14 @@ import { CommonModule } from '@angular/common';
 import { SidebarModule } from './../sidebar/sidebar.module';
 import { NavbarModule } from './../shared/navbar/navbar.module';
 import { FooterModule } from './../shared/footer/footer.module';
+import { MessageService } from './core/message/message.service';
 
 
 @NgModule( {
     imports: [
         RouterModule.forRoot( MODULE_ROUTES ), CommonModule, FormsModule, ReactiveFormsModule, SidebarModule, NavbarModule, FooterModule
     ],
+    providers: [MessageService],
     declarations: [MODULE_COMPONENTS]
 } )
 
