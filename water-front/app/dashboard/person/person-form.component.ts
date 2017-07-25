@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Person } from './person';
 import { PersonRest } from './person-rest';
+import { MessageService, Status } from '../core/message/message.service';
 
 @Component( {
     selector: 'person-cmp',
@@ -24,7 +25,7 @@ export class PersonFormComponent implements OnInit {
         role: new FormControl( '', Validators.required )
     } );
 
-    constructor( private activatedRoute: ActivatedRoute, private router: Router, private personRest: PersonRest ) {
+    constructor( private activatedRoute: ActivatedRoute, private router: Router, private personRest: PersonRest, private messageService: MessageService ) {
     }
     //    private personRest: PersonRest
     ngOnInit() {
@@ -33,24 +34,20 @@ export class PersonFormComponent implements OnInit {
     public save( event ) {
         if ( this.personForm.valid ) {
             let person: Person = this.personForm.value;
-            delete person.id;
-            this.create( person );
-        }
 
-        //            if ( person && person.id != null ) {
-        //                this.editEscolaridade( escolaridade );
-        //            } else {
-        //            delete person.id;
-        //            this.create( person );
-        //            }
-        //
-        //        } else {
-        //            //TODO Colocar em class generica
-        //            Object.values( this.escolaridadeForm.controls ).forEach(( control: AbstractControl ) => {
-        //                control.markAsTouched();
-        //            } );
-        //            this.messageService.send( { message: 'Preencha todos os campos obrigatórios.', status: Status.DANGER } );
-        //        }
+            if ( person && person.id != null ) {
+                this.edit( person );
+            } else {
+                delete person.id;
+                this.create( person );
+            }
+        } else {
+            //TODO: Colocar em class generica
+            //            Object.values( this.escolaridadeForm.controls ).forEach(( control: AbstractControl ) => {
+            //                control.markAsTouched();
+            //            } );
+            this.messageService.send( { message: 'Preencha todos os campos obrigatórios.', status: Status.DANGER } );
+        }
     }
 
 
@@ -58,16 +55,16 @@ export class PersonFormComponent implements OnInit {
         let promise = this.personRest.post( person );
         promise.then( resolve => {
             this.router.navigate( ['/person'] );
-            //            this.messageService.send( { message: 'Escolaridade ' + escolaridade.nome + ' salva com sucesso.', status: Status.SUCCESS } );
+            this.messageService.send( { message: 'Dados cadastrados com sucesso.', status: Status.SUCCESS } );
         } );
     }
-    //
-    //
-    //    private editEscolaridade( escolaridade: Escolaridade ) {
-    //        let promise = this.escolaridadeRest.put( escolaridade.id, escolaridade );
-    //        promise.then( resolve => {
-    //            this.router.navigate( ['/escolaridade'] );
-    //            this.messageService.send({ message: 'Escolaridade ' + escolaridade.nome + ' editada com sucesso.', status: Status.SUCCESS });
-    //        });
-    //    }
+
+
+    private edit( person: Person ) {
+        let promise = this.personRest.put( person.id, person );
+        promise.then( resolve => {
+            this.router.navigate( ['/person'] );
+            this.messageService.send( { message: 'Dados editados com sucesso.', status: Status.SUCCESS } );
+        } );
+    }
 }
