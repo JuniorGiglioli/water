@@ -23,10 +23,11 @@ export class MyErrorHandler implements ErrorHandler {
             }
 
             this.messageService.sendArray( response.errors );
-        }
-        if ( error instanceof AuthHttpException ) {
+        } else if ( error instanceof AuthHttpException ) {
             //TODO verificar console.log
             console.log( error.message, JSON.parse( error.body ) );
+        } else {
+            console.error( error );
         }
     }
 }

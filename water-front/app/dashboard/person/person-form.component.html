@@ -1,0 +1,55 @@
+<div class="main-content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="card">
+				<div class="card-header" data-background-color="red">
+					<h4 class="title">Cadastro de Pessoas</h4>
+					<p class="category">[*]Campos Obrigatórios</p>
+				</div>
+				<div class="card-content">
+					<div class="row">
+						<form [formGroup]="personForm" (ngSubmit)="save($event)">
+
+
+							<div class="col-md-5">
+								<div class="form-group form-black label-floating is-empty">
+									<label class="control-label" for="mail">*Email:</label> <input
+										id="mail" formControlName="mail" type="mail"
+										class="form-control">
+								</div>
+							</div>
+
+							<div class="col-md-3">
+								<div class="form-group form-black label-floating is-empty">
+									<select class="form-control" id="role" formControlName="role">
+										<option value="" disabled selected>Escolha uma permissão</option>
+										<option *ngFor="let role of roles" [ngValue]="role"
+											[selected]="role === person.role">{{ role }}</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-md-3">
+								<div class="form-group form-black label-floating is-empty">
+									<select class="form-control" id="active"
+										formControlName="active">
+										<option value="" disabled selected>Habilitar esta pessoa?</option>
+										<option value="true">Sim</option>
+										<option value="false">Não</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-md-3 col-md-offset-4">
+								<button type="submit" class="btn btn-danger pull-right">{{person.id
+									? 'Editar' : 'Salvar' }}</button>
+								<a class="btn btn-default" routerLink="/person">Limpar</a>
+							</div>
+							<div class="clearfix"></div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

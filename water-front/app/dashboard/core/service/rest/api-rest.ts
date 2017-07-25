@@ -2,7 +2,11 @@ import { Requester } from '../requester/requester';
 import { Injectable, Inject, Injector, ReflectiveInjector, APP_INITIALIZER, OnInit } from '@angular/core';
 import { HttpModule, BaseRequestOptions, XHRBackend, Http, BrowserXhr, ConnectionBackend, ResponseOptions, XSRFStrategy, RequestOptions, BaseResponseOptions, CookieXSRFStrategy } from '@angular/http';
 
-class MyCookieXSRFStrategy extends CookieXSRFStrategy { }
+class MyCookieXSRFStrategy extends CookieXSRFStrategy {
+    constructor() {
+        super();
+    }
+}
 
 @Injectable()
 export abstract class ApiRest {
@@ -49,7 +53,7 @@ export abstract class ApiRest {
     /**
      * Use the post when you need create a new object
      */
-    public post( body: {}) {
+    public post( body: {} ) {
         return this.requester.post( this.getBaseUrl() + this.getResourcePath(), body );
     }
 
@@ -57,7 +61,7 @@ export abstract class ApiRest {
     /**
      * Use the put when you need update a object
      */
-    public put( id: number = 0, body: {}) {
+    public put( id: number = 0, body: {} ) {
         return this.requester.put( this.getBaseUrl() + this.getResourcePath(), body );
     }
 

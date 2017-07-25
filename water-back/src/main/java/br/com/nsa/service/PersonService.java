@@ -1,5 +1,7 @@
 package br.com.nsa.service;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import br.com.nsa.dao.GenericDAO;
@@ -13,6 +15,15 @@ public class PersonService extends AbstractService<Person, Long> {
 	@Override
 	protected GenericDAO<Person, Long> getGenericDAO() {
 		return dao;
+	}
+
+	public Person register(Person person) {
+		return save(person);
+	}
+
+	public Person alter(Person person) {
+		person.setUpdateDate(new Date());
+		return update(person);
 	}
 
 }

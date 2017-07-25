@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
-import { UserComponent } from './user/user.component';
+import { PersonFormComponent } from './person/person-form.component';
 import { IconsComponent } from './icons/icons.component';
 import { TableComponent } from './table/table.component';
 import { NotificationsComponent } from './notifications/notifications.component';
@@ -26,7 +26,7 @@ export const MODULE_ROUTES: Routes = [
         path: '', component: DashboardComponent, canActivate: [OAuth2Guard],
         children: [
             { path: 'dashboard', component: HomeComponent },
-            { path: 'user', component: UserComponent },
+            { path: 'person', component: PersonFormComponent },
             { path: 'table', component: TableComponent },
             { path: 'icons', component: IconsComponent },
             { path: 'notifications', component: NotificationsComponent },
@@ -38,7 +38,7 @@ export const MODULE_ROUTES: Routes = [
 
 export const MODULE_COMPONENTS = [
     HomeComponent,
-    UserComponent,
+    PersonFormComponent,
     TableComponent,
     IconsComponent,
     NotificationsComponent,

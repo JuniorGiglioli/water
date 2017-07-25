@@ -2,6 +2,7 @@ package br.com.nsa.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,17 +13,19 @@ import javax.persistence.TemporalType;
 @Entity
 public class Person extends AbstractModel<Long> {
 
-	private String name;
-	private String mail;
-	private String password;
+	@Column(columnDefinition = "numeric", precision = 16, scale = 4, nullable = false)
 	private BigDecimal credit = BigDecimal.ZERO;
+
 	private boolean active;
+
+	@Column(unique = true, nullable = false)
+	private String mail;
 
 	@Enumerated(EnumType.STRING)
 	private Role role = Role.STANDARD;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "last_acess", nullable = false)
+	@Column(name = "last_acess")
 	private Date lastAcess;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -30,35 +33,18 @@ public class Person extends AbstractModel<Long> {
 	private Date createDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false)
+	@Column(name = "update_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
 	private Date updateDate;
 
 	public Person() {
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	@Column(unique = true, nullable = false)
 	public String getMail() {
 		return mail;
 	}
 
 	public void setMail(String mail) {
 		this.mail = mail;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public BigDecimal getCredit() {

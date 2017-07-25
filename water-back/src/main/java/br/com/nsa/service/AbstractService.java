@@ -22,8 +22,8 @@ public abstract class AbstractService<T extends AbstractModel<Long>, Long extend
 		return getGenericDAO().insert(entity);
 	}
 
-	public void update(T entity) {
-		getGenericDAO().update(entity);
+	public T update(T entity) {
+		return getGenericDAO().update(entity);
 	}
 
 	public void delete(Long id) {
