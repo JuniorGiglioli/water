@@ -6,6 +6,6 @@
     "clientId": "2_3qjow3qq4nwg0w4o8so4okssowwww48c00w0k8cs8ssg044csk",
     "scopes": "public_profile email",
     "logoutUrl": "https://localhost/api/v1/person/__userId__/logout-key.json",
-    "resourceServer": "https://localhost:8443/water-back/",
+    "resourceServer": "https://localhost:8443/water/",
     "profileUrl": "https://localhost/profile/edit"
 }
