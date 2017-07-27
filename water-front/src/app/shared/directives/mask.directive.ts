@@ -2,7 +2,7 @@ import { Directive, HostListener, Input, ElementRef, Renderer } from '@angular/c
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Directive( {
-    selector: '[mask]',
+    selector: '[directive-mask]',
     providers: [{
         provide: NG_VALUE_ACCESSOR,
         useExisting: MaskDirective,
