@@ -24,9 +24,9 @@ export class PersonListComponent {
     public config: ConfigTable = {
         urlData: this.configService.getConfig().getResourceServer() + 'person/table',
         columns: [
-            { title: 'mail', name: 'mail' },
-            { title: 'role', name: 'role' },
-            { title: 'active', name: 'active' }
+            { title: 'E-m@il', name: 'mail' },
+            { title: 'Permissão', name: 'role' },
+            { title: 'Conta ativa ?', name: 'active' }
         ],
         editColumn: true,
         removeColumn: true,
