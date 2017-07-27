@@ -1,0 +1,42 @@
+.pagination {
+	margin-top: 0;
+}
+
+.pagination_content {
+	float: right;
+	text-align: right;
+}
+
+.table_content {
+	margin : 15px 0 0;
+}
+
+table > thead > tr > th > span {
+	cursor: pointer;
+}
+
+table > thead > tr > th > i.fa.fa-fw:hover {
+	cursor: pointer;
+	color: #3f3f3f;
+}
+
+table > thead > tr > th > i.fa.fa-fw.fa-sort {
+	color: #7c7c7c;
+}
+
+table > thead > tr > th > i.fa.fa-fw.fa-sort-* {
+	color: #1a2226;
+}
+
+.table_search {
+	float: right;
+	padding: 5px;
+}
+
+.rows_for_page {
+	margin: 15px 2px;
+}
+
+#rows_for_page {
+	cursor: pointer;
+}

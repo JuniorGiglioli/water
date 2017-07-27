@@ -10,8 +10,15 @@ class MyCookieXSRFStrategy extends CookieXSRFStrategy {
 
 @Injectable()
 export abstract class ApiRest {
-
     private requester: Requester;
+
+    /**
+     * Return the base url
+     */
+    public getBaseUrl() {
+        //TODO buscar de configService
+        return 'https://localhost:8443/water';
+    }
 
     constructor() {
 
@@ -82,11 +89,5 @@ export abstract class ApiRest {
     }
 
 
-    /**
-     * Return the base url
-     */
-    public getBaseUrl() {
-        //TODO buscar de configService
-        return 'https://localhost:8443/water-back';
-    }
+
 }

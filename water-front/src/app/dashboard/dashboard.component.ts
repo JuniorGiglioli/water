@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit {
 
         // subscribe to home component messages
         this.subscription = this.messageService.getMessage().subscribe( messages => {
-            console.log("Gayzou 0->>>>>>>>>" + messages)
             this.messages = messages;
         } );
     }
