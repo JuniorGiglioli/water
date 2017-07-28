@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 @Component( {
     moduleId: module.id,
     selector: '<login></login>',
-    templateUrl: './login.component.html'
+    templateUrl: 'login.component.html',
+    styleUrls: ['login.component.css']
 } )
 
 export class LoginComponent {
@@ -18,10 +19,7 @@ export class LoginComponent {
     }
 
     private getUrlImplicit() {
-
         const config = this.configService.getConfig();
-        console.log(`${config.getAuthorizationEndpoint()}?redirect_uri=${config.getCallbackUrl()}&response_type=token&client_id=${config.getClientId()}&scope=${config.getScopes()}`);
-
         return `${config.getAuthorizationEndpoint()}?redirect_uri=${config.getCallbackUrl()}&response_type=token&client_id=${config.getClientId()}&scope=${config.getScopes()}`;
     }
 
