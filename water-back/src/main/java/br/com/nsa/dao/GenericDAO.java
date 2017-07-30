@@ -15,7 +15,7 @@ import org.hibernate.Session;
 
 import br.com.caelum.vraptor.util.StringUtils;
 
-public class GenericDAO<T, Long extends Serializable> implements Serializable {
+public class GenericDAO<T> implements Serializable {
 
 	private static final long serialVersionUID = -184370010116685871L;
 

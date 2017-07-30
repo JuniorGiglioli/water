@@ -38,7 +38,9 @@ export class PersonListComponent {
         private configService: ConfigService, private messageService: MessageService ) {
     }
     public onEdit( data ) {
+        console.log(data.id);
         if ( data && data.id ) {
+             console.log('estou no if');
             this.router.navigate( ['/person/form', data.id] );
         }
     }

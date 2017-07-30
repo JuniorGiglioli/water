@@ -17,13 +17,13 @@ import org.hibernate.type.Type;
 import br.com.nsa.dao.TableDAO;
 import br.com.nsa.vo.BootstrapTableVO;
 
-public class TableService<T extends Serializable> implements Serializable {
+public class TableService<T> implements Serializable {
 
 	private static final long serialVersionUID = -9188364226414689932L;
 
 	private final String TABLE_CLAUSULE_OR = " OR ";
 	private final String TABLE_SEARCH = "COALESCE(LOWER(CAST(g.%s AS string)), '') LIKE :search";
-	private final String[] ORDER_TYPES = {"ASC", "DESC"};
+	private final String[] ORDER_TYPES = { "ASC", "DESC" };
 
 	private final String DEFAULT_SEARCH = "%%";
 	private final String DEFAULT_ORDER = "ASC";
@@ -35,7 +35,6 @@ public class TableService<T extends Serializable> implements Serializable {
 
 	@Inject
 	private InjectionPoint injectionPoint;
-
 
 	/**
 	 * Return a object BootstrapTable from a class generic
@@ -70,12 +69,12 @@ public class TableService<T extends Serializable> implements Serializable {
 
 		StringJoiner filters = getFilters(classMetadata);
 
-		List<T> rows = this.tableDAO.getRowsTable(genericClass, search, limit, pagination, filters.toString(), sort, order);
+		List<T> rows = this.tableDAO.getRowsTable(genericClass, search, limit, pagination, filters.toString(), sort,
+				order);
 		long total = this.tableDAO.getTotalTable(genericClass, search, filters.toString());
 
 		return new BootstrapTableVO(rows, total);
 	}
-
 
 	/**
 	 * Gets the generic class injected in parent class
@@ -90,7 +89,6 @@ public class TableService<T extends Serializable> implements Serializable {
 		ParameterizedType parameterizedType = (ParameterizedType) injectionPoint.getType();
 		return (Class<T>) parameterizedType.getActualTypeArguments()[0];
 	}
-
 
 	/**
 	 * Creates the generic filter for all columns of table

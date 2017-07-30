@@ -5,17 +5,29 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Debit extends AbstractModel<Long> {
+public class Debit {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	private BigDecimal value = BigDecimal.ZERO;
 
+	@OneToOne
+	@JoinColumn(name = "registrant_id", nullable = false)
 	private Person Registrant;
 
-	@Column(name = "target_user", nullable = false)
+	@OneToOne
+	@JoinColumn(name = "target_id", nullable = false)
 	private Person targetUser;
 
 	private String description;
@@ -29,6 +41,14 @@ public class Debit extends AbstractModel<Long> {
 	private Date updateDate;
 
 	public Debit() {
+	}
+
+	public Long getId() {
+		return this.id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public BigDecimal getValue() {
@@ -85,6 +105,31 @@ public class Debit extends AbstractModel<Long> {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Debit other = (Debit) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 }

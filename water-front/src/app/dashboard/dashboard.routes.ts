@@ -6,7 +6,7 @@ import { OAuth2Guard } from './core/service/oauth2-guard/oauth2-guard';
 import { DashboardComponent } from './dashboard.component';
 
 import { HomeComponent } from './home/home.component';
-import { PersonFormComponent } from './person/person-form.component';
+import { PersonFormComponent } from './person/form/person-form.component';
 import { PersonListComponent } from './person/list/person-list.component';
 import { IconsComponent } from './icons/icons.component';
 import { TableComponent } from './table/table.component';
@@ -31,6 +31,7 @@ export const MODULE_ROUTES: Routes = [
             { path: 'dashboard', component: HomeComponent },
             { path: 'person', component: PersonListComponent },
             { path: 'person/form', component: PersonFormComponent },
+            { path: 'person/form/:id', component: PersonFormComponent },
             { path: 'table', component: TableComponent },
             { path: 'icons', component: IconsComponent },
             { path: 'notifications', component: NotificationsComponent },

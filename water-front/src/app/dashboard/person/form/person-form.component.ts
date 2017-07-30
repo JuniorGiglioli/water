@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Person } from './person';
-import { PersonRest } from './person-rest';
-import { MessageService, Status } from '../core/message/message.service';
+import { Person } from '../person';
+import { PersonRest } from '../person-rest';
+import { MessageService, Status } from '../../core/message/message.service';
 
 @Component( {
     selector: 'person-form',
@@ -31,6 +31,16 @@ export class PersonFormComponent implements OnInit {
     }
     //    private personRest: PersonRest
     ngOnInit() {
+        this.activatedRoute.params.subscribe( params => {
+            const id = params['id'];
+            if ( id ) {
+                const promise = this.personRest.get( params['id'] );
+                promise.then(( person: Person ) => {
+                    this.person = person;
+                    this.personForm.patchValue( person );
+                } );
+            }
+        } );
     }
 
     public save( event ) {

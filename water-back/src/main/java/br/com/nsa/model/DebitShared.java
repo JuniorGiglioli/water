@@ -9,16 +9,24 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "debit_shared")
-public class DebitShared extends AbstractModel<Long> {
+public class DebitShared {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	@Column(name = "amount_value", nullable = false)
 	private BigDecimal amountValue = BigDecimal.ZERO;
@@ -26,6 +34,8 @@ public class DebitShared extends AbstractModel<Long> {
 	@Column(name = "divided_value", nullable = false)
 	private BigDecimal dividedValue = BigDecimal.ZERO;
 
+	@OneToOne
+	@JoinColumn(name = "registrant_id", nullable = false)
 	private Person Registrant;
 
 	private String description;
@@ -44,6 +54,14 @@ public class DebitShared extends AbstractModel<Long> {
 	private List<Person> Payings = new ArrayList<>();
 
 	public DebitShared() {
+	}
+
+	public Long getId() {
+		return this.id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public BigDecimal getAmountValue() {
@@ -100,6 +118,31 @@ public class DebitShared extends AbstractModel<Long> {
 
 	public void setPayings(List<Person> payings) {
 		Payings = payings;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DebitShared other = (DebitShared) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 }

@@ -10,13 +10,12 @@ import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class TableDAO<T extends Serializable> implements Serializable {
+public class TableDAO<T> implements Serializable {
 
 	private static final long serialVersionUID = -7244129516865833827L;
 
 	@Inject
 	private EntityManager entityManager;
-
 
 	/**
 	 * Return the registers from a Generic Class based in your search and filters
@@ -26,23 +25,18 @@ public class TableDAO<T extends Serializable> implements Serializable {
 	 *
 	 * @version 1.0.0
 	 */
-	public List<T> getRowsTable(Class<T> clazz, String search, int limit, int firstResult, String filters, String sort, String order) {
+	public List<T> getRowsTable(Class<T> clazz, String search, int limit, int firstResult, String filters, String sort,
+			String order) {
 
 		StringBuffer queryBuffer = new StringBuffer();
-		queryBuffer.append("SELECT g FROM ")
-				   .append(clazz.getSimpleName())
-				   .append(" g WHERE ")
-				   .append(filters)
-				   .append(String.format(" ORDER BY %s %s", sort, order));
+		queryBuffer.append("SELECT g FROM ").append(clazz.getSimpleName()).append(" g WHERE ").append(filters)
+				.append(String.format(" ORDER BY %s %s", sort, order));
 
 		TypedQuery<T> query = entityManager.createQuery(queryBuffer.toString(), clazz);
-		query.setParameter("search", search)
-			 .setFirstResult(firstResult)
-			 .setMaxResults(limit);
+		query.setParameter("search", search).setFirstResult(firstResult).setMaxResults(limit);
 
 		return getResulList(query);
 	}
-
 
 	/**
 	 * Return the total of rows for a table based in your search and filters
@@ -54,17 +48,14 @@ public class TableDAO<T extends Serializable> implements Serializable {
 	 */
 	public long getTotalTable(Class<T> clazz, String search, String filters) {
 		StringBuffer queryBuffer = new StringBuffer();
-		queryBuffer.append("SELECT COUNT(g) AS total FROM ")
-				   .append(clazz.getSimpleName())
-				   .append(" g WHERE ")
-				   .append(filters);
+		queryBuffer.append("SELECT COUNT(g) AS total FROM ").append(clazz.getSimpleName()).append(" g WHERE ")
+				.append(filters);
 
 		TypedQuery<Long> query = entityManager.createQuery(queryBuffer.toString(), Long.class);
 		query.setParameter("search", search);
 
 		return query.getSingleResult();
 	}
-
 
 	/**
 	 * Return the SessionFactory from EntityManager
@@ -78,7 +69,6 @@ public class TableDAO<T extends Serializable> implements Serializable {
 		Session session = this.entityManager.unwrap(Session.class);
 		return session.getSessionFactory();
 	}
-
 
 	/**
 	 * Return a list from a query
