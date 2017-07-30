@@ -1,7 +1,9 @@
 package br.com.nsa.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -42,6 +45,12 @@ public class Person {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "update_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
 	private Date updateDate;
+
+	@OneToMany(mappedBy = "registrant")
+	private List<Credit> creditRegistrants = new ArrayList<>();
+
+	@OneToMany(mappedBy = "benefited")
+	private List<Credit> creditBenefiteds = new ArrayList<>();
 
 	public Person() {
 	}
@@ -108,6 +117,22 @@ public class Person {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public List<Credit> getCreditRegistrants() {
+		return creditRegistrants;
+	}
+
+	public void setCreditRegistrants(List<Credit> creditRegistrants) {
+		this.creditRegistrants = creditRegistrants;
+	}
+
+	public List<Credit> getCreditBenefiteds() {
+		return creditBenefiteds;
+	}
+
+	public void setCreditBenefiteds(List<Credit> creditBenefiteds) {
+		this.creditBenefiteds = creditBenefiteds;
 	}
 
 	@Override

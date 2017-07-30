@@ -1,0 +1,46 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header" data-background-color="purple">
+                    <h4 class="title">Cadastrar Crédito</h4>
+                    <p class="category">[*]Campos Obrigatórios</p>
+                </div>
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <form [formGroup]="creditForm" (ngSubmit)="save($event)">
+
+                                <div class="col-md-5">
+                                    <div class="form-group form-black label-floating is-empty">
+                                        <select class="form-control" id="benefited" formControlName="benefited">
+                                            <option value="" disabled>Selecione quem receberá o crédito</option>
+                                            <option *ngFor="let benefited of benefiteds" [ngValue]="benefited" [selected]="credit.benefited.id === benefited.id">{{ benefited.mail }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <div class="input-group-addon" for="value">R$</div>
+                                        <input id="value" formControlName="value" type="number" class="form-control" placeholder="1.50">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <textarea id="description" formControlName="description" placeholder="Insira aqui suas observações" class="form-control" rows="3"></textarea>
+                                </div>
+
+                                <div class="col-md-3 col-md-offset-4 ">
+                                    <button type="submit " class="btn btn-primary pull-right ">{{credit.id ? 'Editar' : 'Salvar' }}</button>
+                                    <a class="btn btn-default " routerLink="/credit">Voltar</a>
+                                </div>
+                                <div class="clearfix "></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

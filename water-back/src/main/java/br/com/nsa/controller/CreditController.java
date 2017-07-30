@@ -1,6 +1,7 @@
 package br.com.nsa.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -13,11 +14,14 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
+import br.com.nsa.annotations.Public;
 import br.com.nsa.model.Credit;
 import br.com.nsa.service.CreditService;
 import br.com.nsa.service.TableService;
 import br.com.nsa.vo.BootstrapTableVO;
+import br.com.nsa.vo.TableCreditVO;
 
+@Public
 @Controller
 @Path("/credit")
 public class CreditController implements Serializable {
@@ -32,7 +36,8 @@ public class CreditController implements Serializable {
 
 	@Get("/{id}")
 	public void find(Long id) {
-		this.result.use(Results.json()).withoutRoot().from(service.findById(id)).serialize();
+		this.result.use(Results.json()).withoutRoot().from(service.findById(id)).include("registrant", "benefited")
+				.serialize();
 	}
 
 	@Post("")
@@ -43,7 +48,8 @@ public class CreditController implements Serializable {
 
 	@Get("")
 	public void list() {
-		this.result.use(Results.json()).withoutRoot().from(service.findAll()).serialize();
+		this.result.use(Results.json()).withoutRoot().from(service.findAll()).include("registrant", "benefited")
+				.serialize();
 	}
 
 	@Put("")
@@ -60,9 +66,11 @@ public class CreditController implements Serializable {
 	}
 
 	@Get
-	@Path(value = "table", priority = Path.HIGH)
+	@Path(value = "table")
 	public void find(String search, int limit, int page, String sort, String order) {
 		BootstrapTableVO table = this.tableService.getTable(search, limit, page, sort, order);
-		this.result.use(Results.json()).withoutRoot().from(table).include("rows").serialize();
+		TableCreditVO tableCreditVO = new TableCreditVO((List<Credit>) table.getRows(), table.getTotal());
+		this.result.use(Results.json()).withoutRoot().from(tableCreditVO)
+				.include("rows", "rows.registrant", "rows.benefited").serialize();
 	}
 }

@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -21,22 +21,23 @@ public class Credit {
 	private Long id;
 
 	private BigDecimal value = BigDecimal.ZERO;
-	@OneToOne
+
+	@ManyToOne
 	@JoinColumn(name = "benefited_id", nullable = false)
 	private Person benefited;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "registrant_id", nullable = false)
-	private Person Registrant;
+	private Person registrant;
 
 	private String description;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false, insertable = false, updatable = false)
+	@Column(name = "create_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", insertable = false, updatable = false)
 	private Date createDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false)
+	@Column(name = "update_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
 	private Date updateDate;
 
 	public Credit() {
@@ -75,11 +76,11 @@ public class Credit {
 	}
 
 	public Person getRegistrant() {
-		return Registrant;
+		return registrant;
 	}
 
 	public void setRegistrant(Person registrant) {
-		Registrant = registrant;
+		this.registrant = registrant;
 	}
 
 	public Date getCreateDate() {

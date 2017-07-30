@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import br.com.nsa.model.Credit;
 
-public class BootstrapTableCargoVO implements Serializable {
+public class TableCreditVO implements Serializable {
 
 	private static final long serialVersionUID = 9011693797049579983L;
 
@@ -12,7 +12,7 @@ public class BootstrapTableCargoVO implements Serializable {
 
 	private long total;
 
-	public BootstrapTableCargoVO(List<Credit> rows, long total) {
+	public TableCreditVO(List<Credit> rows, long total) {
 		this.rows = rows;
 		this.total = total;
 	}
