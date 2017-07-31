@@ -1,0 +1,17 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header" data-background-color="purple">
+                    <h4 class="title">Débitos</h4>
+                    <p class="category">Histórico de débitos cadastrados no sistema</p>
+                </div>
+                <div class="card-content">
+                    <div class="col-md-10 col-md-offset-1">
+                        <bootstrap-table [config]="config" (onEdit)="onEdit($event)" (onRemove)="onRemove($event)"></bootstrap-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -17,6 +17,9 @@ import { PersonListComponent } from './person/list/person-list.component';
 import { CreditFormComponent } from './credit/form/credit-form.component';
 import { CreditListComponent } from './credit/list/credit-list.component';
 
+import { DebitFormComponent } from './debit/form/debit-form.component';
+import { DebitListComponent } from './debit/list/debit-list.component';
+
 export const MODULE_ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
     {
@@ -38,6 +41,9 @@ export const MODULE_ROUTES: Routes = [
             { path: 'credit', component: CreditListComponent },
             { path: 'credit/form', component: CreditFormComponent },
             { path: 'credit/form/:id', component: CreditFormComponent },
+            { path: 'debit', component: DebitListComponent },
+            { path: 'debit/form', component: DebitFormComponent },
+            { path: 'debit/form/:id', component: DebitFormComponent },
             { path: 'table', component: TableComponent },
             { path: 'icons', component: IconsComponent },
             { path: 'notifications', component: NotificationsComponent },
@@ -53,6 +59,8 @@ export const MODULE_COMPONENTS = [
     PersonListComponent,
     CreditFormComponent,
     CreditListComponent,
+    DebitFormComponent,
+    DebitListComponent,
     TableComponent,
     IconsComponent,
     NotificationsComponent,

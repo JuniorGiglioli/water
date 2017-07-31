@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormDebitComponent } from './form-debit.component';
+import { FormDebitComponent } from './debit-form.component';
 
 describe('FormDebitComponent', () => {
   let component: FormDebitComponent;

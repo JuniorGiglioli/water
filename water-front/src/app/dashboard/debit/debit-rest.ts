@@ -1,25 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ApiRest } from '../core/service/rest/api-rest';
 
-import { DebitComponent } from './debit.component';
+export class DebitRest extends ApiRest {
 
-describe('DebitComponent', () => {
-  let component: DebitComponent;
-  let fixture: ComponentFixture<DebitComponent>;
+    public getResourcePath() {
+        return '/debit';
+    }
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DebitComponent ]
-    })
-    .compileComponents();
-  }));
+    public getResourcePathForm() {
+        return '/debit/form';
+    }
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DebitComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    public getResourcePathTable() {
+        return 'debit/table';
+    }
+}

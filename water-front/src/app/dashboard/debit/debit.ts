@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Person } from '../person/person';
 
-@Component({
-  selector: 'app-debit',
-  templateUrl: './debit.component.html',
-  styleUrls: ['./debit.component.css']
-})
-export class DebitComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export interface Debit {
+  id?: number;
+  target?: Person;
+  registrant?: Person;
+  description?: String;
+  createDate?: Date;
+  updateDate?: Date;
+  value?: number;
 }
