@@ -88,7 +88,6 @@ export class CreditFormComponent implements OnInit {
             if ( id ) {
                 const promise = this.creditRest.get( params['id'] );
                 promise.then(( credit: Credit ) => {
-                    console.log(credit);
                     this.credit = credit;
                     this.creditForm.patchValue( credit, {onlySelf: true} );
                 } );

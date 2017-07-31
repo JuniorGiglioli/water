@@ -1,3 +1,46 @@
-<p>
-  form-debit works!
-</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header" data-background-color="purple">
+                    <h4 class="title">Cadastrar Débito</h4>
+                    <p class="category">[*]Campos Obrigatórios</p>
+                </div>
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <form [formGroup]="debitForm" (ngSubmit)="save($event)">
+
+                                <div class="col-md-5">
+                                    <div class="form-group form-black label-floating is-empty">
+                                        <select class="form-control" id="target" formControlName="target">
+                                            <option value="" disabled>Selecione a conta</option>
+                                            <option *ngFor="let target of targets" [ngValue]="target" [selected]="debit.target.id === target.id">{{ target.mail }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <div class="input-group-addon" for="value">R$</div>
+                                        <input id="value" formControlName="value" type="number" class="form-control" placeholder="1.50">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <textarea id="description" formControlName="description" placeholder="Insira aqui suas observações" class="form-control" rows="3"></textarea>
+                                </div>
+
+                                <div class="col-md-3 col-md-offset-4 ">
+                                    <button type="submit " class="btn btn-primary pull-right ">{{debit.id ? 'Editar' : 'Salvar' }}</button>
+                                    <a class="btn btn-default " routerLink="/credit">Voltar</a>
+                                </div>
+                                <div class="clearfix "></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

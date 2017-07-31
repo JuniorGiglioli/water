@@ -33,7 +33,7 @@ public class Debit {
 	private String description;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false, insertable = false, updatable = false)
+	@Column(name = "create_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", insertable = false, updatable = false)
 	private Date createDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
