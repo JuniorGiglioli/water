@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -22,13 +22,13 @@ public class Debit {
 
 	private BigDecimal value = BigDecimal.ZERO;
 
-	@OneToOne
-	@JoinColumn(name = "registrant_id", nullable = false)
-	private Person Registrant;
-
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "target_id", nullable = false)
-	private Person targetUser;
+	private Person target;
+
+	@ManyToOne
+	@JoinColumn(name = "registrant_id", nullable = false)
+	private Person registrant;
 
 	private String description;
 
@@ -37,7 +37,7 @@ public class Debit {
 	private Date createDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP", nullable = false)
+	@Column(name = "update_date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
 	private Date updateDate;
 
 	public Debit() {
@@ -59,36 +59,28 @@ public class Debit {
 		this.value = value;
 	}
 
+	public Person getTarget() {
+		return target;
+	}
+
+	public void setTarget(Person target) {
+		this.target = target;
+	}
+
+	public Person getRegistrant() {
+		return registrant;
+	}
+
+	public void setRegistrant(Person registrant) {
+		this.registrant = registrant;
+	}
+
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Person getUserTarget() {
-		return targetUser;
-	}
-
-	public void setRTargetUser(Person targetUser) {
-		this.targetUser = targetUser;
-	}
-
-	public Person getRegistrant() {
-		return Registrant;
-	}
-
-	public void setRegistrant(Person registrant) {
-		Registrant = registrant;
-	}
-
-	public Person getTargetUser() {
-		return targetUser;
-	}
-
-	public void setTargetUser(Person targetUser) {
-		this.targetUser = targetUser;
 	}
 
 	public Date getCreateDate() {

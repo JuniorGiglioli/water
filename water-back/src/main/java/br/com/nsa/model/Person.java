@@ -52,6 +52,12 @@ public class Person {
 	@OneToMany(mappedBy = "benefited")
 	private List<Credit> creditBenefiteds = new ArrayList<>();
 
+	@OneToMany(mappedBy = "registrant")
+	private List<Debit> debitRegistrants = new ArrayList<>();
+
+	@OneToMany(mappedBy = "target")
+	private List<Debit> debitTargets = new ArrayList<>();
+
 	public Person() {
 	}
 
@@ -133,6 +139,22 @@ public class Person {
 
 	public void setCreditBenefiteds(List<Credit> creditBenefiteds) {
 		this.creditBenefiteds = creditBenefiteds;
+	}
+
+	public List<Debit> getDebitRegistrants() {
+		return debitRegistrants;
+	}
+
+	public void setDebitRegistrants(List<Debit> debitRegistrants) {
+		this.debitRegistrants = debitRegistrants;
+	}
+
+	public List<Debit> getDebitTargets() {
+		return debitTargets;
+	}
+
+	public void setDebitTargets(List<Debit> debitTargets) {
+		this.debitTargets = debitTargets;
 	}
 
 	@Override

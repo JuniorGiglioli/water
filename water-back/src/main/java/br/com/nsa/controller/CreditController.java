@@ -69,6 +69,7 @@ public class CreditController implements Serializable {
 	@Path(value = "table")
 	public void find(String search, int limit, int page, String sort, String order) {
 		BootstrapTableVO table = this.tableService.getTable(search, limit, page, sort, order);
+		@SuppressWarnings("unchecked")
 		TableCreditVO tableCreditVO = new TableCreditVO((List<Credit>) table.getRows(), table.getTotal());
 		this.result.use(Results.json()).withoutRoot().from(tableCreditVO)
 				.include("rows", "rows.registrant", "rows.benefited").serialize();
