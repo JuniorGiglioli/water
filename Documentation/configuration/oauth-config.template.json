@@ -1,0 +1,11 @@
+{
+    "callbackUrl": "http://localhost:4200/oauth2/callback",
+    "userInfoUrl": "https://localhost/api/v1/person",
+    "userInfoNameField": "full_name",
+    "authorizationEndpoint": "https://localhost/openid/connect/authorize",
+    "clientId": "",
+    "scopes": "public_profile email",
+    "logoutUrl": "https://localhost/api/v1/person/__userId__/logout-key.json",
+    "resourceServer": "https://localhost:8443/water/",
+    "profileUrl": "https://localhost/profile/edit"
+}

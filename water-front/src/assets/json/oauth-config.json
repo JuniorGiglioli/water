@@ -3,7 +3,7 @@
     "userInfoUrl": "https://localhost/api/v1/person",
     "userInfoNameField": "full_name",
     "authorizationEndpoint": "https://localhost/openid/connect/authorize",
-    "clientId": "2_3qjow3qq4nwg0w4o8so4okssowwww48c00w0k8cs8ssg044csk",
+    "clientId": "3_5kc37jxrua8socw8sws000wck48c8gc884sswwc4g4wkc8g04s",
     "scopes": "public_profile email",
     "logoutUrl": "https://localhost/api/v1/person/__userId__/logout-key.json",
     "resourceServer": "https://localhost:8443/water/",
