@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "^4.3.2",
     "@angular/router": "^4.3.2",
     "@types/core-js": "0.9.42",
-    "@types/jquery": "^3.2.10",
+    "jquery": "^3.2.1",
     "angular-in-memory-web-api": "0.3.2",
     "classlist.js": "^1.1.20150312",
     "font-awesome": "^4.7.0",
@@ -33,7 +33,7 @@
     "zone.js": "^0.8.16"
   },
   "devDependencies": {
-    "@angular/cli": "1.2.6",
+    "@angular/cli": "1.2.7",
     "@angular/compiler-cli": "^4.3.2",
     "@angular/language-service": "^4.3.2",
     "@types/jasmine": "~2.5.53",

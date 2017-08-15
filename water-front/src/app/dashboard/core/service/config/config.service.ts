@@ -14,7 +14,7 @@ export class ConfigService {
 
     public load() {
         return new Promise(( resolve, reject ) => {
-            this._http.get( 'assets/oauth-config.json' )  // path of your config.json file
+            this._http.get( 'assets/json/oauth-config.json' )  // path of your config.json file
                 .map( res => res.json() )
                 .subscribe(
                 ( data: any ) => {
