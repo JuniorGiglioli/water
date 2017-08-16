@@ -1,5 +1,5 @@
 #  Deploy do aplicativo em ambiente de desenvolvimento. Requisitos:
-* Vamos usar o servidor de autenticação Aoth2 (Login cidadão)
+* Vamos usar o servidor de autenticação Aoth2 [Login cidadão](https://github.com/secultce/login-cidadao)
 * Apache Tomcat 8.5 com HTTP/HTTPS habilitado
 * PostgreSQL 9.5
 
